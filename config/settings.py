@@ -40,7 +40,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "fly/templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -92,11 +92,16 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = "static/"
-
+STATIC_URL = "/static/"  # Уже есть
+STATIC_ROOT = os.path.join(
+    BASE_DIR, "static"
+)  # Для сбора статики командой `collectstatic`
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "staticfiles"),  # Дополнительные папки со статикой
+]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
